@@ -1,0 +1,147 @@
+
+<html>
+	<head>
+		<style type="text/css">
+			.container {
+				position: static;
+				width: 800px;
+				height: 350px;
+				overflow: hidden;
+			}
+			.embed {
+				height: 100%;
+				width: 100%;
+				min-width: 1000px;
+				margin-left: -360px;
+				margin-top: -57px;
+				overflow: hidden;
+			}
+			body {
+				width: 800px;
+				margin: auto;
+				padding: 1em;
+				font-family: "Open Sans", sans-serif;
+				line-height: 150%;
+				letter-spacing: 0.1pt;
+			}
+			img {
+				width: 90%;
+				text-align: center;
+				margin: auto;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			pre, code {
+				padding: 1em;
+			}
+
+
+			table {
+				border:1px solid black;
+			  border-collapse: collapse;
+			  min-width:60%;
+			}
+
+			th, td{	
+				border:1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			tr:nth-child(even) {background-color: #f2f2f2;}
+
+		</style>
+		<script>
+			document.addEventListener('readystatechange', event => {
+				if (event.target.readyState === "complete")
+					document.activeElement.blur();
+			});
+		</script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+	</head>
+	<body>
+		
+
+
+
+		<h2 id="lazymatching">Lazy matching:</h2>
+
+		<p>As we have seen, the default nature of quantifiers is greedy, so it will match as many characters as possible.</p>
+
+		<div class="container">
+		<iframe scrolling="no" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="https://regexr.com/4vtqc" class="embed"></iframe>
+		</div>
+
+		<p>To make it lazy, we use <code>?</code> quantifier, which turns the regex engine to match as less characters as possible which satisfies the expression.</p>
+
+		<div class="container">
+		<iframe scrolling="no" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="https://regexr.com/4vtqf" class="embed"></iframe>
+		</div>
+
+		<p>Below is a table showing lazy version of all quantifiers:</p>
+		<table>
+		    <tr>
+		        <td>Quantifier</td>
+		        <td>Lazy version</td>
+		    </tr>
+		    <tr>
+		        <td>{n,m}</td>
+		        <td>{n,m}?</td>
+		    </tr>
+		    <tr>
+		        <td>{n,}</td>
+		        <td>{n,}?</td>
+		    </tr>
+		    <tr>
+		        <td>+</td>
+		        <td>+?</td>
+		    </tr>
+		    <tr>
+		        <td>*</td>
+		        <td>*?</td>
+		    </tr>
+		    <tr>
+		        <td>?</td>
+		        <td>??</td>
+		    </tr>
+		</table>
+
+		<p>So, now we can match html tags as below:</p>
+
+		<div class="container">
+		<iframe scrolling="no" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="https://regexr.com/4vtqr" class="embed"></iframe>
+		</div>
+
+		<p><strong>Problem</strong></p>
+
+		<ol>
+		<li>
+		<p>Find an expression to match <code>href="url"</code> in html file. Note that url can be anything, like <code>https://xyz.com</code>, <code>http://abc.io/app</code>, <code>https://cde.org</code>.</p>
+
+		<p>Answer: <code>href=".*?"</code></p>
+
+		<div class="container">
+		<iframe scrolling="no" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="https://regexr.com/4vu96" class="embed"></iframe>
+		</div>
+		</li>
+		<li>
+		What will be the match for expression <code>\w+? \w+?</code> in <code>abc cde, 123 456</code>.
+		<br>Answer: <code>123 4</code> and <code>abc d</code>
+		<div class="container">
+		<iframe scrolling="no" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="https://regexr.com/4vuek" class="embed"></iframe>
+		</div>
+		</li>
+		<p>We will see how to extract things(like, urls) from the text using regex, in the "group and capturing" concept.</p>
+
+
+
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', (event) => {
+				document.querySelectorAll('pre code').forEach((block) => {
+					hljs.highlightBlock(block);
+				});
+			});
+		</script>
+	</body>
+</html>
